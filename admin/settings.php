@@ -88,7 +88,7 @@
                     <div class="card-body">
                         <div class="d-flex align-items-center justify-content-between mb-3 ">
                             <h5 class="card-title m-0">Contact Settings</h5>
-                            <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal" data-bs-target="#contact-s">
+                            <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal" data-bs-target="#contacts-s">
                                 <i class="bi bi-pencil-square me-1"></i>Edit
                             </button>
                         </div>
@@ -138,12 +138,82 @@
                                     <h6 class="card-subtitle mb-1 fw-bold">iFrame</h6>
                                     <iframe id="iframe" class="border p-2 w-100 " loading="lazy"></iframe>
                                 </div>
-                                    
-                                
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Contact details Modal -->
+                <div class="modal fade" id="contacts-s" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <form id="contacts_s_form">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Contacts Settings</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container-fluid p-0">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label fw-bold">Address</label>
+                                                    <input type="text" name="address" id="address_inp" class="form-control shadow-none" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label fw-bold">Google Map Link</label>
+                                                    <input type="text" name="gmap" id="gmap_inp" class="form-control shadow-none" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label fw-bold">Phone Numbers (with country code)</label>
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
+                                                        <input type="text" name="pn1" id="pn1_inp" class="form-control shadow-none" required>
+                                                    </div>
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
+                                                        <input type="text" name="pn2" id="pn2_inp" class="form-control shadow-none">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label fw-bold">Email</label>
+                                                    <input type="email" name="email" id="email_inp" class="form-control shadow-none" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label fw-bold">Social Links</label>
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text"><i class="bi bi-facebook"></i></span>
+                                                        <input type="text" name="fb" id="fb_inp" class="form-control shadow-none" required>
+                                                    </div>
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text"><i class="bi bi-instagram"></i></span>
+                                                        <input type="text" name="insta" id="insta_inp" class="form-control shadow-none" required>
+                                                    </div>
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text"><i class="bi bi-twitter"></i></span>
+                                                        <input type="text" name="tw" id="tw_inp" class="form-control shadow-none">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label fw-bold">iFrame Src</label>
+                                                    <input type="text" name="iframe" id="iframe_inp" class="form-control shadow-none" required>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" onclick="contacts_inp(contacts_data)" class="btn text-secondary shadow-none" data-bs-dismiss="modal">CANCEL</button>
+                                    <button type="submit" class="btn custom-bg text-white shadow-none">SUBMIT</button>
+                                </div>
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+
 
             </div>
         </div>
@@ -156,9 +226,9 @@
         let general_data, contacts_data;
 
         let general_s_form = document.getElementById('general_s_form');
-
         let site_title_inp = document.getElementById('site_title_inp');
         let site_about_inp = document.getElementById('site_about_inp');
+        let contacts_s_form = document.getElementById('contacts_s_form');
 
         function get_general()
         {
@@ -205,9 +275,8 @@
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
             xhr.onload = function(){
-
-                var myModal = document.getElementById('general-s')
-                var modal = bootstrap.Modal.getInstance(myModal) // Returns a Bootstrap modal instance
+                var myModal = document.getElementById('general-s');
+                var modal = bootstrap.Modal.getInstance(myModal); // Returns a Bootstrap modal instance
                 modal.hide();
 
                 if(this.responseText == 1)
@@ -261,9 +330,61 @@
                 for(i=0;i<contacts_p_id.length;i++){
                     document.getElementById(contacts_p_id[i]).innerText = contacts_data[i+1];
                 }
-                
+                iframe.src = contacts_data[9];
+                contacts_inp(contacts_data); 
             }
             xhr.send('get_contacts');
+        }
+
+        function contacts_inp(data)
+        {
+            let contacts_inp_id = ['address_inp','gmap_inp','pn1_inp','pn2_inp','email_inp','fb_inp','insta_inp','tw_inp','iframe_inp'];
+
+            for(i=0;i<contacts_inp_id.length;i++){
+                document.getElementById(contacts_inp_id[i]).value = data[i+1];
+            }
+        }
+
+        contacts_s_form.addEventListener('submit',function(e){
+            e.preventDefault();
+            upd_contacts();
+        })
+
+
+        function upd_contacts()
+        {
+            let index = ['address','gmap','pn1','pn2','email','fb','insta','tw','iframe'];
+            let contacts_inp_id = ['address_inp','gmap_inp','pn1_inp','pn2_inp','email_inp','fb_inp','insta_inp','tw_inp','iframe_inp'];
+
+            let data_str="";
+
+            for(i=0;i<index.length;i++){
+                // concatenating the data
+                data_str += index[i] + "=" + document.getElementById(contacts_inp_id[i]).value + "&";
+            }
+            data_str += "upd_contacts";
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST","ajax/settings_crud.php",true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onload = function(){
+                var myModal = document.getElementById('contacts-s');
+                var modal = bootstrap.Modal.getInstance(myModal); // Returns a Bootstrap modal instance
+                modal.hide();
+
+                if(this.responseText == 1)
+                {
+                    alert('success','Changes saved!');
+                    get_contacts();
+                }
+                else
+                {
+                    alert('error','No changes made!');
+                }
+            }
+
+            xhr.send(data_str);
         }
 
         window.onload = function(){
