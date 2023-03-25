@@ -21,31 +21,43 @@
         <div class="row">
             <div class="col-lg-6 col-md-6 mb-5 px-4">
                 <div class="bg-white rounded shadow p-4">
-                    <iframe class="w-100 rounded mb-4" height="320px" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.8772837107103!2d75.56304561485123!3d26.843855183157213!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c4850e05bee9b%3A0x1b8d67402d4eb863!2sManipal%20University%20Jaipur!5e0!3m2!1sen!2sin!4v1679201207331!5m2!1sen!2sin" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe class="w-100 rounded mb-4" height="320px" src="<?php echo $contact_r['iframe'] ?>" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     <h5>Address</h5>
-                    <a href="https://goo.gl/maps/EUEB4zx1RE6VS6WU6" target="_blank" class="d-inline-block text-decoration-none text-dark mb-2">
-                    <i class="bi bi-geo-alt-fill"></i> Manipal University Jaipur, Jaipur, Rajasthan
+                    <a href="<?php echo $contact_r['gmap'] ?>" target="_blank" class="d-inline-block text-decoration-none text-dark mb-2">
+                    <i class="bi bi-geo-alt-fill"></i> <?php echo $contact_r['address'] ?>
                     </a>
                     <h5 class="mt-4">Call Us</h5>
-                    <a href="tel: +97778889991" class="d-inline-block mb-2 text-decoration-none text-dark">
-                        <i class="bi bi-telephone-fill"></i>+97778889991
+                    <a href="tel: <?php echo $contact_r['pn1'] ?>" class="d-inline-block mb-2 text-decoration-none text-dark">
+                        <i class="bi bi-telephone-fill me-2"></i><?php echo $contact_r['pn1'] ?>
                     </a>
                     <br>
-                    <a href="tel: +97778889991" class="d-inline-block text-decoration-none text-dark">
-                        <i class="bi bi-telephone-fill"></i>+97778889991
-                    </a>
+                    <?php
+                        if($contact_r['pn2']!=''){
+                            echo <<<data
+                                <a href="tel: $contact_r[pn2]" class="d-inline-block text-decoration-none text-dark">
+                                    <i class="bi bi-telephone-fill me-2"></i>$contact_r[pn2]
+                                </a>
+                            data;
+                        }
+                    ?>
                     <h5 class="mt-4">Email</h5>
-                    <a href="mailto: gamingworld660@gmail.com" class="d-inline-block text-decoration-none text-dark">
-                        <i class="bi bi-envelope-fill me-2"></i>gamingworld660@gmail.com
+                    <a href="mailto: <?php echo $contact_r['email'] ?>" class="d-inline-block text-decoration-none text-dark">
+                        <i class="bi bi-envelope-fill me-2"></i><?php echo $contact_r['email'] ?>
                     </a>
                     <h5 class="mt-4">Follow Us</h5>
-                    <a href="#" class="d-inline-block text-dark fs-5 me-2">
-                        <i class="bi bi-twitter me-1"></i>
-                    </a>
-                    <a href="#" class="d-inline-block text-dark fs-5 me-2">
+                    <?php
+                        if($contact_r['tw']!=''){
+                            echo <<<data
+                                <a href="$contact_r[tw]" class="d-inline-block text-dark fs-5 me-2">
+                                    <i class="bi bi-twitter me-1"></i>
+                                </a>
+                            data;
+                        }
+                    ?>
+                    <a href="<?php echo $contact_r['fb'] ?>" class="d-inline-block text-dark fs-5 me-2">
                         <i class="bi bi-facebook me-1"></i>
                     </a>
-                    <a href="#" class="d-inline-block text-dark fs-5">
+                    <a href="<?php echo $contact_r['insta'] ?>" class="d-inline-block text-dark fs-5">
                         <i class="bi bi-instagram me-1"></i>
                     </a>
                 </div>
