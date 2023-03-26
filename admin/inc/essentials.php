@@ -4,8 +4,13 @@
 
     define('SITE_URL','http://127.0.0.1/hotel_booking_system/');
     define('ABOUT_IMG_PATH',SITE_URL.'image/about/');
+    define('CAROUSEL_IMG_PATH',SITE_URL.'image/carousel/');
 
     // backend uploads process needs this data
+
+    define('UPLOAD_IMAGE_PATH',$_SERVER['DOCUMENT_ROOT'].'/hotel_booking_system/image/'); //$_SERVER['DOCUMENT_ROOT'] will return the absolute path of the server
+    define('ABOUT_FOLDER','about/');
+    define('CAROUSEL_FOLDER','carousel/');
 
     // function to redirect to a new page
     function redirect($url){
@@ -41,8 +46,6 @@
         alert;
     }
 
-    define('UPLOAD_IMAGE_PATH',$_SERVER['DOCUMENT_ROOT'].'/hotel_booking_system/image/'); //$_SERVER['DOCUMENT_ROOT'] will return the absolute path of the server
-    define('ABOUT_FOLDER','about/');
 
     function uploadImage($image,$folder)
     {
