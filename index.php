@@ -456,6 +456,7 @@
       centeredSlides: true,
       slidesPerView: "auto",
       slidesPerView: "3",
+      loop: "true",
       coverflowEffect: {
         rotate: 50,
         stretch: 0,

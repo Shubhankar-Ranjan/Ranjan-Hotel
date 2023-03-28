@@ -241,7 +241,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="mb-3">
-                                        <label class="form-label fw-bold">Name Title</label>
+                                        <label class="form-label fw-bold">Name</label>
                                         <input type="text" name="member_name" id="member_name_inp" class="form-control shadow-none" required>
                                     </div>
                                         <div class="mb-3">
