@@ -6,6 +6,7 @@
     define('ABOUT_IMG_PATH',SITE_URL.'image/about/');
     define('CAROUSEL_IMG_PATH',SITE_URL.'image/carousel/');
     define('FACILITIES_IMG_PATH',SITE_URL.'image/facilities/');
+    define('ROOMS_IMG_PATH',SITE_URL.'image/rooms/');
 
     // backend uploads process needs this data
 
@@ -13,6 +14,7 @@
     define('ABOUT_FOLDER','about/');
     define('CAROUSEL_FOLDER','carousel/');
     define('FACILITIES_FOLDER','facilities/');
+    define('ROOMS_FOLDER','rooms/');
 
     // function to redirect to a new page
     function redirect($url){
