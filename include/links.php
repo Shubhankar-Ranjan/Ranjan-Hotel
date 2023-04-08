@@ -3,6 +3,9 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="CSS/common.css">
 <?php
+
+    session_start();
+
     require('admin/inc/db_config.php');
     require('admin/inc/essentials.php');
     
@@ -11,4 +14,15 @@
     $values = [1];
     $contact_r = mysqli_fetch_assoc(select($contact_q,$values,'i'));
     $settings_r = mysqli_fetch_assoc(select($settings_q,$values,'i'));
+
+    if($settings_r['shutdown']){
+        echo <<<alertBar
+            <div class="bg-danger text-center p-2 fw-bold">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                Bookings are temporarily closed!
+            </div>
+        alertBar;
+    }
+
+
 ?>

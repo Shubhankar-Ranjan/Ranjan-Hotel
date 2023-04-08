@@ -23,12 +23,36 @@
             </li>
         </ul>
             <div class="d-flex">
-                <button type="button" class="btn btn-outline-dark shadow-none me-lg-3 me-2" data-bs-toggle="modal" data-bs-target="#loginModal">
-                    Login
-                </button>
-                <button type="button" class="btn btn-outline-dark shadow-none" data-bs-toggle="modal" data-bs-target="#registerModal">
-                    Register
-                </button>
+                <?php
+                    if(isset($_SESSION['login']) && $_SESSION['login']==true)
+                    {
+                        $path = USERS_IMG_PATH;
+                        echo <<<data
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-outline-dark shadow-none dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                                    <img src="$path$_SESSION[uPic]" style="width: 25px; height: 25px;" class="me-1">
+                                    $_SESSION[uName]
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-lg-end">
+                                <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+                                <li><a class="dropdown-item" href="bookings.php">Bookings</a></li>
+                                <li><a class="dropdown-item" href="logout.php">Log Out</a></li>
+                                </ul>
+                            </div>
+                        data;
+                    }
+                    else
+                    {
+                        echo <<<data
+                            <button type="button" class="btn btn-outline-dark shadow-none me-lg-3 me-2" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                Login
+                            </button>
+                            <button type="button" class="btn btn-outline-dark shadow-none" data-bs-toggle="modal" data-bs-target="#registerModal">
+                                Register
+                            </button>
+                        data;
+                    }
+                ?>
             </div>
         </div>
     </div>
@@ -37,7 +61,7 @@
 <div class="modal fade" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form>
+            <form id="login-form">
                 <div class="modal-header">
                     <h5 class="modal-title d-flex align-items-center">
                         <i class="bi bi-person-circle fs-3 me-3"></i>
@@ -47,16 +71,16 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label class="form-label">Email address</label>
-                        <input type="email" class="form-control shadow-none">
+                        <label class="form-label">Email / Mobile</label>
+                        <input type="text" name="email_mob" required class="form-control shadow-none">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Password</label>
-                        <input type="password" class="form-control shadow-none">
+                        <input type="password" name="pass" required class="form-control shadow-none">
                     </div>
-                    <div class="d-flex align-items-center justify-content-between mb-2">
+                    <div class="d-flex align-items-center justify-content-center mb-2">
                         <button type="submit" class="btn btn-dark shadow-none">LOGIN</button>
-                        <a href="javascript: void(0)" class="text-secondary text-decoration-none">Forgot Password?</a>
+                        <!-- <a href="javascript: void(0)" class="text-secondary text-decoration-none">Forgot Password?</a> -->
                     </div>
                 </div>
             </form>
