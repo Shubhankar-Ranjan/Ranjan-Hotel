@@ -42,7 +42,7 @@ function remove_user(user_id)
             if(this.responseText == 1)
             {
                 alert('success','User Removed!');
-                get_all_rooms();
+                get_users();
             }
             else{
                 alert('error','User removal failed!');
