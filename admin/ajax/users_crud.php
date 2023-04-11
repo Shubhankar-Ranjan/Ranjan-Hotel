@@ -13,12 +13,12 @@
 
         while($row = mysqli_fetch_assoc($res))
         {
-            $status = "<button onclick='toggle_status($row[id],0)' class='btn btn-dark btn-sm shadow-none'>
+            $status="<button onclick='toggle_status($row[id],0)' class='btn btn-dark btn-sm shadow-none'>
                             active
                         </button>";
 
             if(!$row['status']){
-                $status = "<button onclick='toggle_status($row[id],1)' class='btn btn-danger btn-sm shadow-none'>
+                $status="<button onclick='toggle_status($row[id],1)' class='btn btn-danger btn-sm shadow-none'>
                                 inactive
                             </button>";
             }
@@ -81,57 +81,57 @@
     }
 
 
-    if(isset($_POST['search_user']))
-    { 
-        $frm_data = filtration($_POST);
+    // if(isset($_POST['search_user']))
+    // { 
+    //     $frm_data = filtration($_POST);
 
-        $q = "SELECT * FROM `user_cred` WHERE `name` LIKE ?";
+    //     $q = "SELECT * FROM `user_cred` WHERE `name` LIKE ?";
 
-        $res = select($q,values,["%$frm_data[name]%"],'s');
-        $i = 1;
-        $path = USERS_IMG_PATH;        
+    //     $res = select($q,["%$frm_data[name]%"],'s');
+    //     $i = 1;
+    //     $path = USERS_IMG_PATH;        
 
-        $data = "";
+    //     $data = "";
 
-        while($row = mysqli_fetch_assoc($res))
-        {
-            $status = "<button onclick='toggle_status($row[id],0)' class='btn btn-dark btn-sm shadow-none'>
-                            active
-                        </button>";
+    //     while($row = mysqli_fetch_assoc($res))
+    //     {
+    //         $status = "<button onclick='toggle_status($row[id],0)' class='btn btn-dark btn-sm shadow-none'>
+    //                         active
+    //                     </button>";
 
-            if(!$row['status']){
-                $status = "<button onclick='toggle_status($row[id],1)' class='btn btn-danger btn-sm shadow-none'>
-                                inactive
-                            </button>";
-            }
+    //         if(!$row['status']){
+    //             $status = "<button onclick='toggle_status($row[id],1)' class='btn btn-danger btn-sm shadow-none'>
+    //                             inactive
+    //                         </button>";
+    //         }
 
-            $date = date("d-m-Y",strtotime($row['datentime']));
+    //         $date = date("d-m-Y",strtotime($row['datentime']));
 
-            $del_btn = "<button type='button' onclick='remove_user($row[id])' class='btn btn-danger shadow-none btn-sm'>
-                            <i class='bi bi-trash me-1'></i>Delete
-                        </button>";
+    //         $del_btn = "<button type='button' onclick='remove_user($row[id])' class='btn btn-danger shadow-none btn-sm'>
+    //                         <i class='bi bi-trash me-1'></i>Delete
+    //                     </button>";
             
-            $data.="
-                <tr>
-                    <td>$i</td>
-                    <td>
-                        <img src='$path$row[profile]' width='55px'>
-                        <br>
-                        $row[name]
-                    </td>
-                    <td>$row[email]</td>
-                    <td>$row[phonenum]</td>
-                    <td>$row[address] | $row[pincode]</td>
-                    <td>$row[dob]</td>
-                    <td>$status</td>
-                    <td>$date</td>
-                    <td>$del_btn</td>
-                </tr>
-            ";
-            $i++;
-        }
-        echo $data;
-    }
+    //         $data.="
+    //             <tr>
+    //                 <td>$i</td>
+    //                 <td>
+    //                     <img src='$path$row[profile]' width='55px'>
+    //                     <br>
+    //                     $row[name]
+    //                 </td>
+    //                 <td>$row[email]</td>
+    //                 <td>$row[phonenum]</td>
+    //                 <td>$row[address] | $row[pincode]</td>
+    //                 <td>$row[dob]</td>
+    //                 <td>$status</td>
+    //                 <td>$date</td>
+    //                 <td>$del_btn</td>
+    //             </tr>
+    //         ";
+    //         $i++;
+    //     }
+    //     echo $data;
+    // }
 
 
 
