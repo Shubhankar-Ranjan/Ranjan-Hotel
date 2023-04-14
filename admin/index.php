@@ -4,7 +4,7 @@
 
     session_start();
     if((isset($_SESSION['adminLogin']) && $_SESSION['adminLogin']==true)){
-        redirect('dashboard.php');
+        redirect('users.php');
     }
 ?>
 
@@ -61,7 +61,7 @@
                 $row = mysqli_fetch_assoc($res);
                 $_SESSION['adminLogin'] = true;
                 $_SESSION['adminId'] = $row['sr_no'];
-                redirect('dashboard.php');
+                redirect('users.php');
             }
             else{
                 alert('error', 'Login failed - Invalid Credentials!');
